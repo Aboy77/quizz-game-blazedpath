@@ -1,0 +1,24 @@
+{
+  "algorithm": {
+    "parameters": [],
+    "statements": [
+      {
+        "command": "ReadConfigParameter",
+        "configParameterName": "TotalRoundsPerGame",
+        "variableName": "totalRoundPerGame"
+      },
+      {
+        "command": "Return",
+        "expression": "totalRoundPerGame"
+      }
+    ],
+    "typeReturn": "integer",
+    "variables": [
+      {
+        "name": "totalRoundPerGame",
+        "type": "integer"
+      }
+    ]
+  },
+  "routing": null
+}

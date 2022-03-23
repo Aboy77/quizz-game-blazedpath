@@ -1,0 +1,28 @@
+POST http://localhost:8888/start-game
+
+{
+    "playerName": "Brian Cuenca",
+    "topicId": 1
+}
+### Start new Round
+POST http://localhost:8888/start-round/1
+
+### Query reoundId=1 to update the data in the next step.
+GET  http://localhost:8888/round/1
+
+### Simulate /end-round functionality
+### Copy and paste round=1 data and add wascorrect and endtime info.
+PATCH   http://localhost:8888/round/1
+
+{
+  "roundId": 1,
+  "quizId": 1,
+  "gameId": 1,
+  "startGame": "2022-03-20T22:11:19.965Z",
+  "endTime": "2022-03-20T22:11:19.965Z",
+  "wasCorrect": true
+}
+
+
+### Start a new round. Check thath is other quiz
+POST http://localhost:8888/start-round/1

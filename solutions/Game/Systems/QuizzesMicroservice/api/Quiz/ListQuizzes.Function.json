@@ -1,0 +1,68 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "args",
+        "type": "ArgsListQuizzes"
+      }
+    ],
+    "statements": [
+      {
+        "command": "Return",
+        "expression": "Transform( TrfQuizWithTopic,\nRdsSelectReader(QuizzessDataBase.Quiz, [\n  RdsConditional(quizId == ^args.quizId, !IsNull(^args.quizId)),\n  RdsConditional(topicId == ^args.topicId, !IsNull(^args.topicId)),\n  RdsConditional(RdsLike(topic.name, \"%\" + ^args.topicName + \"%\"), !IsNull(^args.topicName)),\n  RdsConditional(RdsLike(question, \"%\" + ^args.question + \"%\"), !IsNull(^args.question)),\n  RdsConditional(RdsLike(answer1, \"%\" + ^args.answer\t + \"%\") || RdsLike(answer2, \"%\" + ^args.answer\t + \"%\") || RdsLike(answer3, \"%\" + ^args.answer\t + \"%\") || RdsLike(answer4, \"%\" + ^args.answer\t + \"%\"), !IsNull(^args.answer))\n  ], RdsDesc(quizId), ^args.offset, ^args.limit))"
+      }
+    ],
+    "typeReturn": "list(Quiz)",
+    "variables": []
+  },
+  "routing": {
+    "method": "GET",
+    "parameters": [
+      {
+        "bind": "args.quizId",
+        "in": "Query",
+        "name": "quizId",
+        "remarks": "For filtering."
+      },
+      {
+        "bind": "args.topicId",
+        "in": "Query",
+        "name": "topicId",
+        "remarks": "For filtering."
+      },
+      {
+        "bind": "args.offset",
+        "in": "Query",
+        "name": "offset",
+        "remarks": "Requested index for start the results to be provided in response."
+      },
+      {
+        "bind": "args.limit",
+        "in": "Query",
+        "name": "limit",
+        "remarks": "Requested number results to be provided in response."
+      },
+      {
+        "bind": "args.topicName",
+        "in": "Query",
+        "name": "topicName",
+        "remarks": "Filter by topic name"
+      },
+      {
+        "bind": "args.question",
+        "in": "Query",
+        "name": "question",
+        "remarks": "Filter by question."
+      },
+      {
+        "bind": "args.answer",
+        "in": "Query",
+        "name": "answer",
+        "remarks": "Filter by answer."
+      }
+    ],
+    "path": "/quizzes",
+    "remarks": "Allows to get a list of Quizzes.",
+    "responses": []
+  }
+}

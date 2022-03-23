@@ -1,0 +1,31 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "topicId",
+        "type": "integer"
+      }
+    ],
+    "statements": [
+      {
+        "command": "Return",
+        "expression": "RdsSelect(QuizzessDataBase.Quiz, This(),topicId == ^topicId)"
+      }
+    ],
+    "typeReturn": "list(Quiz)",
+    "variables": []
+  },
+  "routing": {
+    "method": "GET",
+    "parameters": [
+      {
+        "bind": "topicId",
+        "in": "Path",
+        "name": "topicId",
+        "remarks": "The topic id for quizzes"
+      }
+    ],
+    "path": "/quizz/{topicId}",
+    "remarks": "Get quizzes per topic id"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "systemName": "QuizMobileApp",
+      "action": "build",
+      "parameters": [
+        {
+          "configParameterName": "MsWaitWhenCorrectAnswer",
+          "value": 1000
+        },
+        {
+          "configParameterName": "MsWaitWhenInCorrectAnswer",
+          "value": 2000
+        }
+      ]
+    },
+    {
+      "systemName": "QuizzesMicroservice",
+      "action": "build",
+      "buildPort": 8888,
+      "parameters": [
+        {
+          "configParameterName": "TotalRoundsPerGame",
+          "value": 5
+        },
+        {
+          "configParameterName": "MaxRankingItemsPerTopic",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "systemName": "QuizzessDataBase",
+      "action": "mock",
+      "mockInitialization": {
+        "records": []
+      }
+    }
+  ]
+}

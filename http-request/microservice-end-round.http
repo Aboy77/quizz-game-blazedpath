@@ -1,0 +1,48 @@
+POST http://localhost:8888/start-game
+
+{
+    "playerName": "Brian Cuenca",
+    "topicId": 1
+}
+### Start new Round
+POST http://localhost:8888/start-round/1
+
+### Query reoundId=1 to update the data in the next step.
+GET  http://localhost:8888/round/1
+
+### Cheat: query the quizeId xxx
+GET  http://localhost:8888/quiz/23
+
+### End current round
+POST http://localhost:8888/end-round
+
+{
+    "gameId": 1,
+    "userAnswer": 3
+}
+
+### LOOP UNTIL FINISH THE GAME
+
+### Start new round
+POST http://localhost:8888/start-round/1
+
+### End current round 
+POST http://localhost:8888/end-round
+
+{
+    "gameId": 1,
+    "userAnswer": 1
+}
+
+### GET FINAL GAME STATE
+GET http://localhost:8888/game-state/1
+
+### Query all rounds in the game
+GET http://localhost:8888/rounds?gameId=1
+
+###
+GET http://localhost:8888/game/1
+
+
+###
+GET http://localhost:8888/quizz/2

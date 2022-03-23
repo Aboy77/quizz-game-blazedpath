@@ -1,0 +1,20 @@
+[{
+            "topicId": "History",
+            "name": "History"
+},
+          {
+            "topicId": "Entertainment",
+            "name": "Entertainment"
+          },
+          {
+            "topicId": "Sports",
+            "name": "Sports"
+          },
+          {
+            "topicId": "ScienceAndNature",
+            "name": "ScienceAndNature"
+          },
+          {
+            "topicId": "GeneralKnowledge",
+            "name": "GeneralKnowledge"
+          }]

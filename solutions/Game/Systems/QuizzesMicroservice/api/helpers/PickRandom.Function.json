@@ -1,0 +1,19 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "list",
+        "type": "list(any)"
+      }
+    ],
+    "statements": [
+      {
+        "command": "Return",
+        "expression": "ElementAt(list, Floor(Random() * Count(list))\t)"
+      }
+    ],
+    "typeReturn": "any",
+    "variables": []
+  },
+  "routing": null
+}

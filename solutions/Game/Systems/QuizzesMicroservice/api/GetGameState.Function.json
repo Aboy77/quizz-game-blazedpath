@@ -1,0 +1,167 @@
+{
+  "algorithm": {
+    "parameters": [
+      {
+        "name": "gameId",
+        "type": "integer"
+      }
+    ],
+    "statements": [
+      {
+        "command": "Set",
+        "expression": "GetGame(gameId)",
+        "variableName": "game"
+      },
+      {
+        "children": [
+          {
+            "command": "Throw",
+            "errorName": "NotFound",
+            "expressionData": "\"Can't found the game\"",
+            "expressionInnerError": "null"
+          }
+        ],
+        "command": "If",
+        "expression": "IsNull(game)"
+      },
+      {
+        "command": "Set",
+        "expression": "{}",
+        "variableName": "gameState"
+      },
+      {
+        "command": "Set",
+        "expression": "gameId",
+        "variableName": "gameState.gameId"
+      },
+      {
+        "command": "Set",
+        "expression": "GeTopicNameByGameId(gameId)",
+        "variableName": "gameState.topicName"
+      },
+      {
+        "command": "Set",
+        "expression": "game.playerName",
+        "variableName": "gameState.playerName"
+      },
+      {
+        "command": "Set",
+        "expression": "IsNotNull(game.endTime)",
+        "variableName": "gameState.isGameEnded"
+      },
+      {
+        "command": "Set",
+        "expression": "game.score",
+        "variableName": "gameState.score"
+      },
+      {
+        "command": "Set",
+        "expression": "GetRoundsPlayed(gameId) + 1",
+        "variableName": "gameState.currentRound"
+      },
+      {
+        "command": "Set",
+        "expression": "GetTotalRoundPerGame()",
+        "variableName": "gameState.totalRounds"
+      },
+      {
+        "command": "Set",
+        "expression": "null",
+        "variableName": "roundQuiz"
+      },
+      {
+        "children": [
+          {
+            "command": "Set",
+            "expression": "GetLasRound(gameId)",
+            "variableName": "round"
+          },
+          {
+            "children": [
+              {
+                "command": "Set",
+                "expression": "{}",
+                "variableName": "roundQuiz"
+              },
+              {
+                "command": "Set",
+                "expression": "round.roundId",
+                "variableName": "roundQuiz.roundId"
+              },
+              {
+                "command": "Set",
+                "expression": "round.quiz.question",
+                "variableName": "roundQuiz.question"
+              },
+              {
+                "command": "Set",
+                "expression": "round.quiz.answer1",
+                "variableName": "roundQuiz.answer1"
+              },
+              {
+                "command": "Set",
+                "expression": "round.quiz.answer2",
+                "variableName": "roundQuiz.answer2"
+              },
+              {
+                "command": "Set",
+                "expression": "round.quiz.answer3",
+                "variableName": "roundQuiz.answer3"
+              },
+              {
+                "command": "Set",
+                "expression": "round.quiz.answer4",
+                "variableName": "roundQuiz.answer4"
+              }
+            ],
+            "command": "If",
+            "expression": "IsNotNull(round) && IsRoundEnded(round) == false"
+          }
+        ],
+        "command": "If",
+        "expression": "gameState.currentRound <= gameState.totalRounds"
+      },
+      {
+        "command": "Set",
+        "expression": "roundQuiz",
+        "variableName": "gameState.currentQuiz"
+      },
+      {
+        "command": "Return",
+        "expression": "gameState"
+      }
+    ],
+    "typeReturn": "GameState",
+    "variables": [
+      {
+        "name": "game",
+        "type": "Game"
+      },
+      {
+        "name": "gameState",
+        "type": "GameState"
+      },
+      {
+        "name": "roundQuiz",
+        "type": "RoundQuiz"
+      },
+      {
+        "name": "round",
+        "type": "Round"
+      }
+    ]
+  },
+  "routing": {
+    "method": "GET",
+    "parameters": [
+      {
+        "bind": "gameId",
+        "in": "Path",
+        "name": "gameId",
+        "remarks": "The game id of the game"
+      }
+    ],
+    "path": "/game-state/{gameId}",
+    "remarks": "Get the current game of  a game"
+  }
+}

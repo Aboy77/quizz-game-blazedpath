@@ -1,0 +1,131 @@
+{
+  "eventsAndFunctions": [
+    {
+      "algorithm": {
+        "parameters": [],
+        "statements": [
+          {
+            "command": "ReadModel",
+            "modelVariableName": "wasCorrect",
+            "variableName": "wasCorrect"
+          },
+          {
+            "command": "ReadModel",
+            "modelVariableName": "correctAnswer",
+            "variableName": "correctAnswer"
+          },
+          {
+            "children": [
+              {
+                "command": "Hide",
+                "widgetName": "incorrectContainer"
+              }
+            ],
+            "command": "If",
+            "expression": "wasCorrect"
+          },
+          {
+            "children": [
+              {
+                "command": "Hide",
+                "widgetName": "correctContainer"
+              },
+              {
+                "command": "SetValue",
+                "expression": "{correctAnswer: correctAnswer}",
+                "widgetName": "htmlrendererCorrectAnswer"
+              }
+            ],
+            "command": "Else"
+          }
+        ],
+        "typeReturn": "any",
+        "variables": [
+          {
+            "name": "wasCorrect",
+            "type": "boolean"
+          },
+          {
+            "name": "correctAnswer",
+            "type": "string"
+          }
+        ]
+      },
+      "name": "main_init"
+    }
+  ],
+  "model": [
+    {
+      "name": "wasCorrect",
+      "required": true,
+      "type": "boolean"
+    },
+    {
+      "name": "correctAnswer",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "align": "center",
+            "color": "default",
+            "icon": "remove.svg",
+            "name": "iconIncorrect",
+            "size": "xx-large",
+            "widget": "Icon"
+          },
+          {
+            "align": "center",
+            "bold": true,
+            "color": "error",
+            "name": "labelIncorrect",
+            "size": "x-large",
+            "text": "Incorrect! ",
+            "widget": "Label"
+          }
+        ],
+        "layout": "container",
+        "name": "incorrectContainer"
+      },
+      {
+        "children": [
+          {
+            "align": "center",
+            "color": "default",
+            "icon": "execute.svg",
+            "name": "iconCorrect",
+            "size": "xx-large",
+            "widget": "Icon"
+          },
+          {
+            "align": "center",
+            "bold": true,
+            "color": "success",
+            "name": "labelCorrect",
+            "size": "x-large",
+            "text": "Correct!",
+            "widget": "Label"
+          }
+        ],
+        "layout": "container",
+        "name": "correctContainer"
+      },
+      {
+        "htmlTemplate": "<center>\n  <h4>\n    The correct answer was:\n  </h4>\n  <h3>\n    {{correctAnswer}}\n  </h3>\n</center>",
+        "name": "htmlrendererCorrectAnswer",
+        "widget": "HtmlRenderer"
+      }
+    ],
+    "cssClass": "blz-area-default",
+    "layout": "container",
+    "name": "container"
+  },
+  "routing": {
+    "path": "/round-game-result"
+  },
+  "unused": []
+}
